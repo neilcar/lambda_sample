@@ -18,11 +18,15 @@ node {
     }
 
     stage('Embed Serverless Defender') {
-        sh 'curl -k -u $TL_USER:$TL_PASS --output ./twistcli https://$TL_CONSOLE/api/v1/util/twistcli'
-        sh 'sudo chmod a+x ./twistcli'
-        sh './twistcli serverless embed --address https://$TL_CONSOLE \
-       --console-host $TL_CONSOLE --handler main.handler --function neil_test \
-       --runtime python3.6  -u $TL_USER -p $TL_PASS lambda.zip'
+        withCredentials([usernamePassword(credentialsId: 'twistlock_creds', passwordVariable: 'TL_PASS', usernameVariable: 'TL_USER')]) {
+            sh 'curl -k -u $TL_USER:$TL_PASS --output ./twistcli https://$TL_CONSOLE/api/v1/util/twistcli'
+            sh 'sudo chmod a+x ./twistcli'
+            sh './twistcli serverless embed --address https://$TL_CONSOLE \
+          --console-host $TL_CONSOLE --handler main.handler --function neil_test \
+          --runtime python3.6  -u $TL_USER -p $TL_PASS lambda.zip'
+}
+
+
 
     }
     stage('Publish Function') {
