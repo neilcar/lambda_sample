@@ -1,7 +1,7 @@
 node {
     
     stage('Clean') {
-        sh 'rm *.zip'
+        sh 'rm *.zip || true'
 
     }
 
