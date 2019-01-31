@@ -40,6 +40,7 @@ def handler(event, context):
     if query is not None:
         try:
             contents = urllib.request.urlopen(query)
+            contents = contents.decode("utf8")
         except Exception as e:
             contents = str(e)
         
