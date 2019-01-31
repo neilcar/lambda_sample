@@ -21,7 +21,7 @@ node {
         withCredentials([usernamePassword(credentialsId: 'twistlock_creds', passwordVariable: 'TL_PASS', usernameVariable: 'TL_USER')]) {
             sh 'curl -k -u $TL_USER:$TL_PASS --output ./twistcli https://$TL_CONSOLE/api/v1/util/twistcli'
             sh 'sudo chmod a+x ./twistcli'        
-            sh './twistcli serverless scan --details -address $TL_CONSOLE_URL -u $TL_USER -p $TL_PASS lambda.zip'
+            sh './twistcli serverless scan --details -address https://$TL_CONSOLE -u $TL_USER -p $TL_PASS lambda.zip'
         } 
     }
     
