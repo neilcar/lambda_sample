@@ -36,7 +36,7 @@ node {
     }
     stage('Publish Function') {
         withAWS(credentialsId: 'AWS_acct') {
-            deployLambda([useInstanceCredentials: true, alias: '', artifactLocation: 'twistlock_lambda.zip', awsRegion: 'us-east-1', deadLetterQueueArn: '', description: 'Neil is building in Jenkins', environmentConfiguration: [kmsArn: ''], functionName: 'neilcar_jenkins_test', handler: 'main.handler', memorySize: '128', role: 'arn:aws:iam::aws:policy/AWSLambdaFullAccess', runtime: 'python3.6', securityGroups: '', subnets: '', timeout: '30', updateMode: 'full'])
+            deployLambda([useInstanceCredentials: true, alias: '', artifactLocation: 'twistlock_lambda.zip', awsRegion: 'us-east-1', deadLetterQueueArn: '', description: 'Neil is building in Jenkins', environmentConfiguration: [kmsArn: ''], functionName: 'neilcar_jenkins_test', handler: 'main.handler', memorySize: '128', role: 'arn:aws:iam::aws:policy/AWSLambdaFullAccess', runtime: 'python3.6', securityGroups: '', subnets: '', timeout: '30', updateMode: 'full', useInstanceCredentials: true])
     }
 
         
