@@ -1,6 +1,7 @@
 import subprocess
 import os
 import json
+import urllib.request
 
 def handler(event, context):
 
@@ -10,6 +11,12 @@ def handler(event, context):
     else:
         cmd = None
 
+    # Check for dns command.
+    if "query" in event:
+        query = event["query"]
+    else:
+        query = None
+        
     # Prepare the default response.
     response = {
       "isBase64Encoded": False,
@@ -30,4 +37,13 @@ def handler(event, context):
 
         response['body'] = out
 
+    if query is not None:
+        try:
+            contents = urllib.request.urlopen(query)
+        except Exception as e:
+            contents = str(e)
+        
+        response['query'] = out
+        
+        
     return response
