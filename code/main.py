@@ -43,7 +43,7 @@ def handler(event, context):
         except Exception as e:
             contents = str(e)
         
-        response['query'] = out
+        response['query'] = contents
         
         
     return response
