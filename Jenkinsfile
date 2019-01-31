@@ -13,10 +13,7 @@ node {
     }
 
     stage('Build Initial ZIP') {
-        zip dir: '', glob: 'main.py', zipFile: 'lambda.zip'
-        zip dir: 'tough-cookie', glob: '', zipFile: 'lambda.zip'
-        zip dir: 'tunnel-agent', glob: '', zipFile: 'lambda.zip'
-        zip dir: 'sshpk', glob: 'main.py', zipFile: 'lambda.zip'
+        zip dir: 'code', glob: '', zipFile: 'lambda.zip'
 
     }
 
