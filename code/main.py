@@ -1,3 +1,4 @@
+import twistlock.serverless
 import subprocess
 import os
 import json
@@ -40,11 +41,11 @@ def handler(event, context):
     if query is not None:
         try:
             contents = urllib.request.urlopen(query)
-            contents = contents.decode("utf8")
+            content = contents.getcode()
         except Exception as e:
-            contents = str(e)
+            content = str(e)
         
-        response['query'] = contents
+        response['query'] = content
         
         
     return response
